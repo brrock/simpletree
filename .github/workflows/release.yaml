@@ -15,13 +15,13 @@ jobs:
         include:
           - os: ubuntu-latest
             platform: linux
-            asset_name: mytree-linux
+            asset_name: simpletree-linux
           - os: windows-latest
             platform: windows
-            asset_name: mytree-windows.exe
+            asset_name: simpletree-windows.exe
           - os: macos-latest
             platform: macos
-            asset_name: mytree-macos
+            asset_name: simpletree-macos
 
     steps:
     - uses: actions/checkout@v3
@@ -37,7 +37,7 @@ jobs:
         pip install pyinstaller
         
     - name: Build binary
-      run: pyinstaller --onefile mytree.py --name ${{ matrix.asset_name }}
+      run: pyinstaller --onefile simpletree.py --name ${{ matrix.asset_name }}
       
     - name: Upload artifact
       uses: actions/upload-artifact@v3
@@ -60,9 +60,9 @@ jobs:
       uses: softprops/action-gh-release@v1
       with:
         files: |
-          mytree-linux/*
-          mytree-windows.exe/*
-          mytree-macos/*
+          simpletree-linux/*
+          simpletree-windows.exe/*
+          simpletree-macos/*
         draft: false
         prerelease: false
         generate_release_notes: true
